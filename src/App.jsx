@@ -29,7 +29,7 @@ const App = () => {
       setUser(user)
       noteService.setToken(user)
     }
-  }, [])
+  }, )
 
   const addNote = (event) => {
     event.preventDefault()
@@ -124,6 +124,7 @@ const App = () => {
     <div>
       <h1>Notes</h1>
       <Notification message={errorMessage}/>
+      <h1>Hola</h1>
         {user === null ?
           loginForm() :
           <div>
