@@ -125,6 +125,7 @@ const App = () => {
       <h1>Notes</h1>
       <Notification message={errorMessage}/>
       <h1>Hola</h1>
+      <h1>Bienvenido a casa</h1>
         {user === null ?
           loginForm() :
           <div>
