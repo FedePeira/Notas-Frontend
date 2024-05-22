@@ -7,6 +7,22 @@ import NoteForm from './components/NoteForm'
 import LoginForm from './components/LoginForm'
 import noteService from './services/note'
 import loginService from './services/login'
+import{
+  BrowserRouter as Router,
+  Routes, Route, Link
+} from 'react-router-dom'
+
+const Home = () => (
+  <div> <h2>TKTL notes app</h2> </div>
+)
+
+const Notes = () => (
+  <div> <h2>Notes</h2> </div>
+)
+
+const Users = () => (
+  <div> <h2>Users</h2> </div>
+)
 
 const App = () => {
   const [notes, setNotes] = useState([])
@@ -17,12 +33,17 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [loginVisible, setLoginVisible] = useState(false)
 
+  const padding = {
+    padding: 5
+  }
+
   const noteFormRef = useRef()
 
   useEffect(() => {
     noteService
       .getAll()
       .then(initialNotes => {
+        console.log(initialNotes)
         setNotes(initialNotes)
       })
   }, [])
@@ -127,7 +148,19 @@ const App = () => {
   }
 
   return (
-    <div>
+    <Router>
+      <div>
+        <Link style={padding} to="/">home</Link>
+        <Link style={padding} to="/notes">notes</Link>
+        <Link style={padding} to="/users">users</Link>
+      </div>
+
+      <Routes>
+        <Route path="/notes" element={<Notes />} />
+        <Route path="/users" element={<Users />}/>
+        <Route path="/" element={<Home />} />
+      </Routes>
+
       <h1>Notes</h1>
       <Notification message={errorMessage}/>
 
@@ -158,7 +191,7 @@ const App = () => {
         )}
       </ul>
       <Footer/>
-    </div>
+    </Router>
   )
 }
 

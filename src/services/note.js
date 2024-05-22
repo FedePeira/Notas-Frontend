@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseUrl = '/api/notes'
+const apiUrl = import.meta.env.VITE_API_URL
+const baseUrl = `${apiUrl}/api/notes`
 
 let token = null
 
